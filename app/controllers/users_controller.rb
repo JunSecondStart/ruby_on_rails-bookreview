@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_user_logged_in, only: [:index, :show, :edit]
+  
   def index
     @pagy, @users = pagy(User.order(id: :desc), items: 25)
   end
@@ -32,5 +34,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end  
+  end   
 end
