@@ -23,4 +23,8 @@ class User < ApplicationRecord
   def loving?(book)
     self.lovings.include?(book)
   end
+  
+  def review(book)
+      self.reviews.find_or_create_by(book_id: book.id)
+  end
 end

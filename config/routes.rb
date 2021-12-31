@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
-  get 'login/review', to: 'review#new'
-  post 'login/review', to: 'review#review'
   
   delete 'logout', to: 'sessions#destroy'
   
@@ -23,6 +21,7 @@ Rails.application.routes.draw do
       get :likes
     end
   end
+    resources :review, only: [:new, :create]
     resources :microposts, only: [:create, :destroy]
-    resources :favorites, only: [:create, :destroy]
+    resources :favorites, only: [:index, :create, :destroy]
 end

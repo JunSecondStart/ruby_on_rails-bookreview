@@ -33,8 +33,8 @@ end
     @title = params[:title]
     @author = params[:author]
     @image_url = params[:image_url]
+    render 'review/create'
   end
-
 
   private
   #「楽天APIのデータから必要なデータを絞り込む」、且つ「対応するカラムにデータを格納する」メソッドを設定していきます。
