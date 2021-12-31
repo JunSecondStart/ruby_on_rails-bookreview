@@ -1,0 +1,23 @@
+#検索バーを表示
+<%= form_tag(books_search_path, method: :get) do %>
+  <%= text_field_tag :title, @title %>
+  <button type="submit" class="btn btn-warning">検索</button>
+<% end %>
+
+#検索結果を表示
+<% if @books %>
+    <% @books.each do |book| %>
+    <li class="d-flex">
+      <div class="rounded me-1 mb-3">
+        <p><%= image_tag book.image_url,width: '15%', height: '50%' %>
+        <%= book.title %>
+        <%= book.author %>
+        <%= book.url %>
+        <%= button_to 'レビューを書く', {controller: 'books', action: 'create'}, {method: :get, params: {title: book.title, author: book.author, image_url: book.image_url, isbn: book.isbn} }%></p>
+        <button class="btn" type="button"><%= render 'favorites/favorite_button', book: book %></button>
+      </div>
+    <% end %>
+<% else %>
+＃検索したところ、0件でした。
+<% end %>
+

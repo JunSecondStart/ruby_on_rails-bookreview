@@ -6,4 +6,21 @@ class User < ApplicationRecord
     has_secure_password
     
     has_many :microposts
+    has_many :favorites
+    has_many :lovings, through: :favorites, source: :book
+    has_many :reviews, dependent: :destroy
+    has_many :books, through: :reviews, source: :book
+    
+  def favorite(book)
+      self.favorites.find_or_create_by(book_id: book.id)
+  end
+
+  def unfavorite(book)
+    favorite = self.favorites.find_by(book_id: book.id)
+    favorite.destroy if favorite
+  end
+
+  def loving?(book)
+    self.lovings.include?(book)
+  end
 end

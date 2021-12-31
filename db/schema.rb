@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_29_101628) do
+ActiveRecord::Schema.define(version: 2021_12_31_013145) do
+
+  create_table "books", charset: "utf8mb4", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.bigint "isbn"
+    t.string "url"
+    t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_favorites_on_book_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "microposts", charset: "utf8mb4", force: :cascade do |t|
     t.string "content"
@@ -18,6 +37,19 @@ ActiveRecord::Schema.define(version: 2021_12_29_101628) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "reviews", charset: "utf8mb4", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "star"
+    t.integer "heart"
+    t.integer "intelligence"
+    t.index ["book_id"], name: "index_reviews_on_book_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -28,5 +60,8 @@ ActiveRecord::Schema.define(version: 2021_12_29_101628) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "favorites", "books"
+  add_foreign_key "favorites", "users"
   add_foreign_key "microposts", "users"
+  add_foreign_key "reviews", "users"
 end

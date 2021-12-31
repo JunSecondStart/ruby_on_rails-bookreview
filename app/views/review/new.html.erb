@@ -1,0 +1,43 @@
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-sm-4">
+      <%= form_for @review,:url => {:action => :review} do |f| %>
+        <div class="mb-3">
+          <%= f.text_area :content, class: 'form-control', rows: 5 %>
+        </div>
+        <div class="mb-3">
+        <%= f.label :star, 'オススメ度' %>
+        <%= f.text_area :star, class: 'form-control' %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :heart, '好き度' %>
+        <%= f.text_area :heart, class: 'form-control' %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :intelligence, '知性' %>
+        <%= f.text_area :intelligence, class: 'form-control' %>
+      </div> 
+      <div class="mb-3">
+        <%= f.label :id, 'id' %>
+        <%= f.text_area :id, class: 'form-control' %>
+      </div>  
+      <div class="mb-3">
+        <%= f.label :user_id, 'user_id' %>
+        <%= f.text_area :user_id, class: 'form-control' %>
+      </div>  
+      <div class="mb-3">
+        <%= f.label :book_id, 'book_id' %>
+        <%= f.text_area :book_id, class: 'form-control' %>
+      </div>  
+        <%= f.submit 'Post', class: 'btn btn-primary w-100' %>
+      <% end %>
+    </aside>
+  </div>
+<% else %>
+  <div class="bg-secondary p-3 p-sm-5 my-4 rounded">
+    <div class="text-center text-white">
+      <h1>Welcome to the myfavorites</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>

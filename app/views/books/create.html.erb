@@ -1,0 +1,12 @@
+<%= image_tag @image_url,width: '15%', height: '50%' %>
+<%= @title %>
+<%= @author %>
+
+<%= form_with(model: @review) do |f| %>
+  <div class="mb-3">
+    <%= f.text_area :content, class: 'form-control', rows: 5 %>
+  </div>
+  <%= f.submit 'Post', class: 'btn btn-primary w-100' %>
+<% end %>
+
+
