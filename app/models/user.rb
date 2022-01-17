@@ -6,13 +6,18 @@ class User < ApplicationRecord
     has_secure_password
     
     has_many :microposts
-    has_many :favorites
+    has_many :favorites, dependent: :destroy
     has_many :lovings, through: :favorites, source: :book
-    has_many :reviews, dependent: :destroy
-    has_many :books, through: :reviews, source: :book
+    has_many :review1s, dependent: :destroy
+    has_many :books, through: :review1s, source: :book
+    has_many :books
     
   def favorite(book)
       self.favorites.find_or_create_by(book_id: book.id)
+      self.favorites.find_or_create_by(title: book.title)
+      self.favorites.find_or_create_by(author: book.author)
+      self.favorites.find_or_create_by(url: book.url)
+      self.favorites.find_or_create_by(image_url: book.image_url)
   end
 
   def unfavorite(book)
@@ -22,9 +27,5 @@ class User < ApplicationRecord
 
   def loving?(book)
     self.lovings.include?(book)
-  end
-  
-  def review(book)
-      self.reviews.find_or_create_by(book_id: book.id)
   end
 end

@@ -11,6 +11,7 @@ class Book < ApplicationRecord
   has_many :microposts
   has_many :favorites
   has_many :lovers, through: :favorites, source: :user
-  has_many :reviews, dependent: :destroy
-  has_many :users, through: :reviews, source: :user
+  has_many :review1s, dependent: :destroy
+  has_many :users
+  
 end

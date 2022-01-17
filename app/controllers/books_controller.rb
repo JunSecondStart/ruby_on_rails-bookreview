@@ -1,6 +1,15 @@
 class BooksController < ApplicationController
   def index
-      @pagy, @reviews = pagy(Review.order(id: :desc), items: 5)
+    @books = current_user.review1s.build
+    @pagy, @books = pagy(current_user.review1s.order(id: :desc), items: 5)
+  end
+    
+  def new
+    @title = params[:title]
+    @author = params[:author]
+    @image_url = params[:image_url]
+    @review1 = current_user.review1s.build　# form_with 用
+    render 'books/new'
   end
     
   def search
@@ -28,12 +37,19 @@ class BooksController < ApplicationController
     end
   end
 end
-
   def create
     @title = params[:title]
     @author = params[:author]
     @image_url = params[:image_url]
-    render 'review/create'
+    @review1 = current_user.review1s.build(review1_params)
+    if @review1.save
+      flash[:success] = 'レビューを投稿しました。'
+      render 'books/create'
+    else
+      @pagy, @review1 = pagy(current_user.review1s.order(id: :desc))
+      flash.now[:danger] = 'レビューの投稿に失敗しました。'
+      render 'books/create'
+    end
   end
 
   private
@@ -51,5 +67,10 @@ end
       image_url: image_url,
     }
   end
+
+  def review1_params
+    params.require(:review1).permit(:content)
+  end
 end
+
 

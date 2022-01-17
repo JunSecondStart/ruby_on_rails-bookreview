@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_31_013145) do
+ActiveRecord::Schema.define(version: 2022_01_01_043443) do
 
   create_table "books", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 2021_12_31_013145) do
     t.bigint "book_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "content"
+    t.string "title"
+    t.string "author"
+    t.string "url"
+    t.string "image_url"
     t.index ["book_id"], name: "index_favorites_on_book_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
@@ -39,17 +44,14 @@ ActiveRecord::Schema.define(version: 2021_12_31_013145) do
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
-  create_table "reviews", charset: "utf8mb4", force: :cascade do |t|
+  create_table "review1s", charset: "utf8mb4", force: :cascade do |t|
     t.string "content"
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "star"
-    t.integer "heart"
-    t.integer "intelligence"
-    t.index ["book_id"], name: "index_reviews_on_book_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["book_id"], name: "index_review1s_on_book_id"
+    t.index ["user_id"], name: "index_review1s_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -63,5 +65,6 @@ ActiveRecord::Schema.define(version: 2021_12_31_013145) do
   add_foreign_key "favorites", "books"
   add_foreign_key "favorites", "users"
   add_foreign_key "microposts", "users"
-  add_foreign_key "reviews", "users"
+  add_foreign_key "review1s", "books"
+  add_foreign_key "review1s", "users"
 end

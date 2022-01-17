@@ -1,0 +1,15 @@
+<figure>
+  <%= image_tag @image_url,width: '15%', height: '50%' %>
+  <figcaption><%= @title %><%= @author %></figcaption>
+</figure>
+
+<aside class="col-sm-4">
+    <%= form_with(model: @review1) do |f| %>
+      <div class="mb-3">
+       <%= f.text_area :content, class: 'form-control', rows: 5 %>
+      </div>
+    <%= f.submit 'Post', class: 'btn btn-primary w-100' %>
+  <% end %>
+</aside>
+
+<p>review1s/new</p>

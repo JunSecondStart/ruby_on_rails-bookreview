@@ -13,7 +13,7 @@
         <%= book.title %>
         <%= book.author %>
         <%= book.url %>
-        <%= button_to 'レビューを書く', {controller: 'books', action: 'create'}, {method: :get, params: {title: book.title, author: book.author, image_url: book.image_url, isbn: book.isbn} }%></p>
+        <%= button_to 'レビューを書く', {controller: 'books', action: 'new'}, {method: :get, params: {title: book.title, author: book.author, image_url: book.image_url, isbn: book.isbn} }%></p>
         <button class="btn" type="button"><%= render 'favorites/favorite_button', book: book %></button>
       </div>
     <% end %>

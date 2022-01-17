@@ -21,10 +21,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:success] = 'レビューを投稿しました。'
+      flash[:success] = 'ユーザーを新規登録しました。'
       redirect_to @user
     else
-      flash.now[:danger] = 'レビューの投稿に失敗しました。'
+      flash.now[:danger] = '新規登録を失敗しました。'
       render :new
     end
   end
