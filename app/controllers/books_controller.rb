@@ -8,8 +8,7 @@ class BooksController < ApplicationController
     @title = params[:title]
     @author = params[:author]
     @image_url = params[:image_url]
-    @review1 = current_user.review1s.build　# form_with 用
-    render 'books/new'
+    render 'review1s/create'
   end
     
   def search
@@ -24,7 +23,7 @@ class BooksController < ApplicationController
     })
     #この部分で「@books」にAPIからの取得したJSONデータを格納していきます。
     #read(result)については、privateメソッドとして、設定しております。
-    results.each do |result|
+    results.first(10).each do |result|
       book = Book.new(read(result))
       @books << book
     end
@@ -37,20 +36,6 @@ class BooksController < ApplicationController
     end
   end
 end
-  def create
-    @title = params[:title]
-    @author = params[:author]
-    @image_url = params[:image_url]
-    @review1 = current_user.review1s.build(review1_params)
-    if @review1.save
-      flash[:success] = 'レビューを投稿しました。'
-      render 'books/create'
-    else
-      @pagy, @review1 = pagy(current_user.review1s.order(id: :desc))
-      flash.now[:danger] = 'レビューの投稿に失敗しました。'
-      render 'books/create'
-    end
-  end
 
   private
   #「楽天APIのデータから必要なデータを絞り込む」、且つ「対応するカラムにデータを格納する」メソッドを設定していきます。
@@ -67,10 +52,4 @@ end
       image_url: image_url,
     }
   end
-
-  def review1_params
-    params.require(:review1).permit(:content)
-  end
 end
-
-

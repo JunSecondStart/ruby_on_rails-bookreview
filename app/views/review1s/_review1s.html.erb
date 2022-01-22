@@ -1,13 +1,23 @@
-<figure>
-  <%= image_tag @image_url,width: '15%', height: '50%' %>
-  <figcaption><%= @title %><%= @author %></figcaption>
-</figure>
-
-<aside class="col-sm-4">
-    <%= form_with(model: @review1) do |f| %>
-      <div class="mb-3">
-       <%= f.text_area :content, class: 'form-control', rows: 5 %>
-      </div>
-    <%= f.submit 'Post', class: 'btn btn-primary w-100' %>
-  <% end %>
-</aside>
+<% if review1s.any? %>
+  <ul class="list-unstyled mt-2">
+    <% review1s.each do |review1| %>
+      <li class="d-flex">
+        <img class="rounded me-2 mb-5" src="<%= gravatar_url(review1.user, { size: 64 }) %>" alt="">
+        <div>
+          <div>
+            <%= link_to review1.user.name, user_path(review1.user), class: "text-decoration-none" %> <span class="text-muted">posted at <%= review1.created_at %></span>
+          </div>
+          <div>
+            <p><%= review1.content %></p>
+          </div>
+          <div>
+            <% if current_user == review1.user %>
+              <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <%== pagy_bootstrap_nav(@pagy) %>
+<% end %>

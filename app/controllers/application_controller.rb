@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper 
+  include Review1sHelper
   include Pagy::Backend
+  
 
   private
 

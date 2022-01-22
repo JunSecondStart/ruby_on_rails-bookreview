@@ -10,13 +10,14 @@ class FavoritesController < ApplicationController
     book = Book.find(params[:book_id])
     current_user.favorite(book)
     @title = Favorite.new(params[:title])
+    current_user.favorite(@title)
     @author = Favorite.new(params[:author])
+    current_user.favorite(@author)
     @url = Favorite.new(params[:url])
+    current_user.favorite(@url)
     @image_url = Favorite.new(params[:image_url])
-    @title.save
-    @author.save
-    @url.save
-    @image_url.save
+    current_user.favorite(@image_url)
+    
     flash[:success] = 'この本をお気に入りに追加しました。'
     render 'books/create'
   end

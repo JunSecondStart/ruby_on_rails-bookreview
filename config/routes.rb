@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'books/index', to: "books#index"
   get 'books/search', to: "books#search"
   get 'books/new', to: "books#new"
-  post 'books/new', to: "books#create"
+  post 'books/new', to: "review1s#create"
   post 'books/create', to: "books#create"
   get 'books/index', to: "books#index"
 
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       get :likes
     end
   end
-    resources :review1s,only: [:index,:new,:create]
+    resources :review1s,only: [:create, :destroy]
     resources :microposts, only: [:create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
 end
