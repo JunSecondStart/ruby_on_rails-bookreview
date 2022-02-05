@@ -1,15 +1,19 @@
-<figure>
-  <%= image_tag @image_url,width: '15%', height: '50%' %>
-  <figcaption><%= @title %><%= @author %></figcaption>
-</figure>
-
-<aside class="col-sm-4">
+<div class = "row">
+  <aside class="col-sm-4">
+    <figure>
+      <%= image_tag $image_url,width: '50%', height: '140%' %>
+      <figcaption><%= $title %><%= $author %></figcaption>
+    </figure>
     <%= form_with(model: @review1) do |f| %>
       <div class="mb-3">
-       <%= f.text_area :content, class: 'form-control', rows: 5 %>
+        <%= f.text_area :content, class: 'form-control', rows: 5 %>
       </div>
-    <%= f.submit 'Post', class: 'btn btn-primary w-100' %>
-  <% end %>
-</aside>
-
-<p>review1s/create</p>
+        <%= f.submit 'Post', class: 'btn btn-primary w-100' %>
+    <% end %>
+  </aside>
+  <div class="col-sm-8">
+    <h1>今までの投稿</h1>
+    <%= render 'review1s/review1s', review1s: @review1s %>
+  </div>
+  <p>review1s/create</p>
+</div>

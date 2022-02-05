@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "search", :media => "all" %>
+<p class="search_explain"> 検索バーにて、書籍タイトルで検索してください。楽天ブックスに登録されている書籍が表示されます。<br>※作者、タイトルの一部などの検索ワードでは検索できません。</p>
 #検索バーを表示
 <%= form_tag(books_search_path, method: :get) do %>
   <%= text_field_tag :title, @title %>
@@ -6,18 +8,95 @@
 
 #検索結果を表示
 <% if @books %>
-    <% @books.each do |book| %>
-    <li class="d-flex">
-      <div class="rounded me-1 mb-3">
-        <p><%= image_tag book.image_url,width: '15%', height: '50%' %>
-        <%= book.title %>
-        <%= book.author %>
-        <%= book.url %>
-        <%= button_to 'レビューを書く', {controller: 'books', action: 'new'}, {method: :get, params: {title: book.title, author: book.author, image_url: book.image_url, isbn: book.isbn} }%></p>
-        <button class="btn" type="button"><%= render 'favorites/favorite_button', book: book %></button>
+  <aside class="books-review wrapper">
+    <% @books.first(@book.length).each_with_index do |book, i| %>
+      <div class="searchbooks">
+        <%= image_tag @book[i+1].image_url,width: '120%', height: '150%' %><br>
+        <%= @book[i+1].title %><br>
+        <%= @book[i+1].author %><br>          
+        <%= @book[i+1].url %>
       </div>
     <% end %>
-<% else %>
-＃検索したところ、0件でした。
+  </aside>
+  <div class="review">
+    <% unless @book[1].blank? %>
+      <span class="review_buttonA">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[1].title, current_book_image_url: @book[1].image_url,current_book_author: @book[1].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[2].blank? %>
+      <span class="review_buttonB">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[2].title, current_book_image_url: @book[2].image_url,current_book_author: @book[2].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[3].blank? %>
+      <span class="review_buttonC">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[3].title, current_book_image_url: @book[3].image_url,current_book_author: @book[3].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[4].blank? %>
+      <span class="review_buttonD">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[4].title, current_book_image_url: @book[4].image_url,current_book_author: @book[4].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[5].blank? %>
+      <span class="review_buttonE">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[5].title, current_book_image_url: @book[5].image_url,current_book_author: @book[5].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[6].blank? %>
+      <span class="review_buttonF">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[6].title, current_book_image_url: @book[6].image_url,current_book_author: @book[6].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[7].blank? %>
+      <span class="review_buttonG">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[7].title, current_book_image_url: @book[7].image_url,current_book_author: @book[7].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[8].blank? %>
+      <span class="review_buttonH">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[8].title, current_book_image_url: @book[8].image_url,current_book_author: @book[8].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[9].blank? %>
+      <span class="review_buttonI">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[9].title, current_book_image_url: @book[9].image_url,current_book_author: @book[9].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[10].blank? %>
+      <span class="review_buttonJ">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[10].title, current_book_image_url: @book[10].image_url,current_book_author: @book[10].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[11].blank? %>
+      <span class="review_buttonK">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[11].title, current_book_image_url: @book[11].image_url,current_book_author: @book[11].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[12].blank? %>
+      <span class="review_buttonL">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[12].title, current_book_image_url: @book[12].image_url,current_book_author: @book[12].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[13].blank? %>
+      <span class="review_buttonM">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[13].title, current_book_image_url: @book[13].image_url,current_book_author: @book[13].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[14].blank? %>
+      <span class="review_buttonN">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[14].title, current_book_image_url: @book[14].image_url,current_book_author: @book[14].author } }%>
+      </span>
+    <% end %>
+    <% unless @book[15].blank? %>
+      <span class="review_buttonO">
+        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[15].title, current_book_image_url: @book[15].image_url,current_book_author: @book[15].author } }%>
+      </span>
+    <% end %>
+  </div>
 <% end %>
 
+
+      
+    

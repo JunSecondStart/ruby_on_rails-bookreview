@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_013435) do
+ActiveRecord::Schema.define(version: 2022_01_28_084846) do
 
   create_table "books", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
@@ -51,6 +51,9 @@ ActiveRecord::Schema.define(version: 2022_01_21_013435) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
+    t.string "name"
+    t.string "image_url"
+    t.string "author"
     t.index ["book_id"], name: "index_review1s_on_book_id"
     t.index ["user_id"], name: "index_review1s_on_user_id"
   end

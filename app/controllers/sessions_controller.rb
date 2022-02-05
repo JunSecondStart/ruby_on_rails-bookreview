@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     if login(email, password)
       flash[:success] = 'ログインに成功しました。'
       redirect_to @user
+      @pagy, $curent_user_review1s=pagy(Review1.where(user_id: current_user.id).order(id: :desc), items: 15)
     else
       flash.now[:danger] = 'ログインに失敗しました。'
       render :new

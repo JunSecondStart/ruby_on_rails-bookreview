@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   post 'books/new', to: "review1s#create"
   post 'books/create', to: "books#create"
   get 'books/index', to: "books#index"
-
+  
+  get 'review1s/personal_review1s', to:"review1s#personal_review1s"
   
   
   resources :users, only: [:index, :show, :create]do
@@ -23,9 +24,10 @@ Rails.application.routes.draw do
       get :followings
       get :followers
       get :likes
+      get :review1s
     end
   end
-    resources :review1s,only: [:create, :destroy]
+    resources :review1s,only: [:index, :create, :destroy]
     resources :microposts, only: [:create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
 end

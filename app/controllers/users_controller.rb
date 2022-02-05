@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @pagy, @microposts = pagy(@user.microposts.order(id: :desc))
     counts(@user)
-  end
+    end
 
 
   def new
@@ -36,6 +36,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @pagy, @lovings = pagy(@user.lovings)
     counts(@user)
+  end
+  
+  def review1s
+    @user = User.find(params[:id])
+    $curent_user_review1s=Review1.where(user_id: current_user.id)
+    @pagy, $curent_user_review1s = pagy($curent_user_review1s.order(id: :desc), items: 15)
   end
   
    private

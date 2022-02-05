@@ -1,0 +1,90 @@
+.search_exprain {
+  font-size: 20px;
+}
+
+.review_button {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.books-review {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 250px 250px 250px 250px 250px;
+  grid-gap: 250px;
+}
+.review_buttonA {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  340px;                /* 左からの位置指定 */
+    top: 420px;                  /* 上からの位置指定 */
+}
+.review_buttonB {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  795px;                /* 左からの位置指定 */
+    top: 420px;                  /* 上からの位置指定 */
+}
+.review_buttonC {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  1240px;                /* 左からの位置指定 */
+    top: 420px;                  /* 上からの位置指定 */
+}
+.review_buttonD {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  340px;                /* 左からの位置指定 */
+    top: 910px;                  /* 上からの位置指定 */
+}
+.review_buttonE {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  795px;                /* 左からの位置指定 */
+    top: 910px;                  /* 上からの位置指定 */
+}
+.review_buttonF {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  1240px;                /* 左からの位置指定 */
+    top: 910px;                  /* 上からの位置指定 */
+}
+.review_buttonG {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  340px;                /* 左からの位置指定 */
+    top: 1420px;                  /* 上からの位置指定 */
+}
+.review_buttonH {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  795px;                /* 左からの位置指定 */
+    top: 1420px;                  /* 上からの位置指定 */
+}
+.review_buttonI {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  1240px;                /* 左からの位置指定 */
+    top: 1420px;                  /* 上からの位置指定 */
+}
+.review_buttonJ {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  340px;                /* 左からの位置指定 */
+    top: 1930px;                  /* 上からの位置指定 */
+}
+.review_buttonK {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  795px;                /* 左からの位置指定 */
+    top: 1930px;                  /* 上からの位置指定 */
+}
+.review_buttonL {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  1240px;                /* 左からの位置指定 */
+    top: 1930px;                  /* 上からの位置指定 */
+}
+.review_buttonM {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  340px;                /* 左からの位置指定 */
+    top: 2410px;                  /* 上からの位置指定 */
+}
+.review_buttonN {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  795px;                /* 左からの位置指定 */
+    top: 2410px;                  /* 上からの位置指定 */
+}
+.review_buttonO {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    left:  1240px;                /* 左からの位置指定 */
+    top: 2410px;                  /* 上からの位置指定 */
+}

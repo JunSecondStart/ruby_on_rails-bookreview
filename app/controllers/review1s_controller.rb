@@ -1,18 +1,14 @@
 class Review1sController < ApplicationController
   before_action :require_user_logged_in
 
-def add_user
-    @group = Group.find(params[:group_id])
-    user = User.find(params[:user_id])
-    @group.users << user
-    redirect_to group_path, notice: "ユーザーを追加しました。"
+  def index
+    @pagy,@review1 = pagy(Review1.find_by(user_id: current_user.id).order(id: :desc), items: 15)
+    $title = @review1.title
+    $author = @review1.author
+    $image_url = @review1.image_url
   end
 
   def new
-    @title = params[:title]
-    @author = params[:author]
-    @image_url = params[:image_url]
-    @user_id = current_user.id
   end
 
   def edit
@@ -23,25 +19,28 @@ def add_user
   end
 
   def create
-    @title = params[:title]
-    @author = params[:author]
-    @image_url = params[:image_url]
+    @current_book = Book.where(title: $title).last
     
-    book = Book.find_by(params[:title])
     @review1 = 
       current_user.review1s.create(
         content: review1_params[:content],
-        book_id: book.id,
-        title: book.title
+        book_id: @current_book.id,
+        title: $title,
+        name: current_user.name,
+        image_url: $image_url,
+        author: $author
         )
-      
-      
+        
     if @review1.save 
       flash[:success] = 'レビューを投稿しました。'
+      $review1s = Review1.where(title: $title) 
+      $review1 = $review1s.last
+      $curent_user_review1s=Review1.where(user_id: current_user.id)
       render 'review1s/index'
     else
       @pagy, @review1 = pagy(current_user.review1s.order(id: :desc))
       flash.now[:danger] = 'レビューの投稿に失敗しました。'
+      $curent_user_review1s=Review1.where(user_id: current_user.id)
       render 'review1s/index'
     end
   end
