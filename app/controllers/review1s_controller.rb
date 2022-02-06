@@ -46,6 +46,9 @@ class Review1sController < ApplicationController
   end
   
   def destroy
+    review1.destroy
+    flash[:success] = 'レビューを削除しました。'
+    render 'review1s/index'
   end
 
   private

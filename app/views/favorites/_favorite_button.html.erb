@@ -1,15 +1,11 @@
 <% if current_user.loving?(book) %>
   <%= form_with(model: current_user.favorites.find_by(book_id: book.id), method: :delete) do |f| %>
-    <%= hidden_field_tag :book_id, book.id %>
+    <%= hidden_field_tag :book_id, @book[1].id %>
     <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
   <% end %>
 <% else %>
   <%= form_with(model: current_user.favorites.build) do |f| %>
-    <%= hidden_field_tag :book_id, book.id %>
+    <%= hidden_field_tag :book_id, @book[1].id %>
     <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
   <% end %>
 <% end %>
-
-
-
-        <button class="btn" type="button"><%= render 'favorites/favorite_button', book: $book[1] %></button>

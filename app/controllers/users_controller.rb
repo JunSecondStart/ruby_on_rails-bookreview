@@ -34,13 +34,14 @@ class UsersController < ApplicationController
   
   def likes
     @user = User.find(params[:id])
-    @pagy, @lovings = pagy(@user.lovings)
+    @likes = Favorite.where(user_id: @user.id)
+    @pagy, @lovings = pagy(@likes)
     counts(@user)
   end
   
   def review1s
     @user = User.find(params[:id])
-    $curent_user_review1s=Review1.where(user_id: current_user.id)
+    $curent_user_review1s=Review1.where(user_id: @user.id)
     @pagy, $curent_user_review1s = pagy($curent_user_review1s.order(id: :desc), items: 15)
   end
   
