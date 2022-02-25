@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show, :edit]
+  before_action :require_user_logged_in, only: [:index, :show]
   
   def index
     @pagy, @users = pagy(User.order(id: :desc), items: 5)
@@ -29,9 +29,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
-  
   def likes
     @user = User.find(params[:id])
     @likes = Favorite.where(user_id: @user.id)

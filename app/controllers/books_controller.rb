@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :require_user_logged_in
+  
   def index
     @pagy, $review1s = pagy(Review1.order(id: :desc), items: 15)
   end
