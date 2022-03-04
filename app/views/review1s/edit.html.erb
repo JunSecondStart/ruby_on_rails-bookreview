@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag "all", :media => "all" %>
+<body>
+<div class = "row">
+  <aside class="col-sm-4">
+    <%= form_with(model: @review1) do |f| %>
+      <div class="mb-3">
+        <%= f.text_area :content, class: 'form-control', rows: 5 %>
+      </div>
+        <%= f.submit 'POST', class: 'btn btn-primary w-100' %>
+    <% end %>
+  </aside>
+  <div class="col-sm-8">
+    
+  <p>投稿内容</p>
+  
+  <table class="table table-bordered">
+    <thead>
+        <tr>
+          <th scope="col-sm-1">number</th>
+          <th scope="col-sm-3">name</th>
+          <th scope="col-sm-3">title/author</th>
+          <th scope="col-sm-4">content</th>
+          <th scope="col-sm-1">created_at</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row"><%= @review1.user_id %></th>
+      <td><%= @review1.name %></td>
+      <td><%= @review1.title %><br><%= @review1.author %></td>
+      <td><%= @review1.content %></td>
+      <td><%= @review1.created_at %></td>
+      <%= button_to 'このレビューを削除する', review1_path(id: @review1.id,title: @review1.title) ,{ method: :delete, data: { confirm: "本当に削除してもいいですか？" }}%>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>

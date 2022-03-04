@@ -12,10 +12,18 @@ class Review1sController < ApplicationController
   end
 
   def edit
-    @review1 = Favorite.find(params[:id])
+    @review1 = Review1.find(params[:id])
   end
 
   def update
+    @review1 = Review1.find(params[:id])
+    if @review1.update(review1_create_params)
+      flash[:success] = 'review は正常に更新されました'
+      render 'review1s/edit'
+    else
+      flash.now[:danger] = 'review は更新されませんでした'
+      render 'review1s/edit'
+    end
   end
 
   def create
@@ -36,24 +44,47 @@ class Review1sController < ApplicationController
       $review1s = Review1.where(title: $title) 
       $review1 = $review1s.last
       $curent_user_review1s=Review1.where(user_id: current_user.id)
-      render 'review1s/index'
+      $current_book_review1s=Review1.where(title: $title)
+      render 'review1s/create'
     else
       @pagy, @review1 = pagy(current_user.review1s.order(id: :desc))
       flash.now[:danger] = 'レビューの投稿に失敗しました。'
       $curent_user_review1s=Review1.where(user_id: current_user.id)
-      render 'review1s/index'
+      render 'review1s/create'
     end
   end
   
   def destroy
-    review1.destroy
+    @review1 = Review1.find(params[:id])
+    @review1.destroy
     flash[:success] = 'レビューを削除しました。'
-    render 'review1s/index'
+    $current_book_review1s = Review1.where(title: params[:title])
+    render 'review1s/book_review1s'
+  end
+  
+  def book_review1s
+    $current_book_review1s=Review1.where(title: params[:title])
+  end
+  
+  def personal_review1s
+    $user = User.find(params[:user_id])
+    $personal_user_review1s = Review1.where(user_id: params[:user_id])
+  end
+  
+  def my_review1s
+    @user = User.find(current_user.id)
+    $current_user_review1s=Review1.where(user_id: current_user.id)
+    @pagy, $current_user_review1s = pagy($current_user_review1s.order(id: :ASC), items: 15)
+    @all=Review1.all.count
   end
 
   private
 
   def review1_params
     params.permit(:content)
+  end
+  
+  def review1_create_params
+    params.require(:review1).permit(:content)
   end
 end

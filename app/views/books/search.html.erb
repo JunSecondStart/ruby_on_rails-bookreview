@@ -1,4 +1,6 @@
+<%= stylesheet_link_tag "all", :media => "all" %>
 <%= stylesheet_link_tag "search", :media => "all" %>
+<body>
 <p class="search_explain"> 検索バーにて、書籍タイトルで検索してください。楽天ブックスに登録されている書籍が表示されます。<br>※作者、タイトルの一部などの検索ワードでは検索できません。</p>
 #検索バーを表示
 <%= form_tag(books_search_path, method: :get) do %>
@@ -20,83 +22,246 @@
   </aside>
   <div class="review">
     <% unless @book[1].blank? %>
-      <span class="review_buttonA">
-        <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[1].title, current_book_image_url: @book[1].image_url,current_book_author: @book[1].author } }%>
+    <span class="review_buttonA">
+      <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[1].title, current_book_image_url: @book[1].image_url,current_book_author: @book[1].author } }%>
+      <% unless @favorite[1].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[1].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[1].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[1].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+    <% end %>
       </span>
     <% end %>
     <% unless @book[2].blank? %>
       <span class="review_buttonB">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[2].title, current_book_image_url: @book[2].image_url,current_book_author: @book[2].author } }%>
+        <% unless @favorite[2].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[2].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[2].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[2].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[3].blank? %>
       <span class="review_buttonC">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[3].title, current_book_image_url: @book[3].image_url,current_book_author: @book[3].author } }%>
+        <% unless @favorite[3].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[3].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[3].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[3].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[4].blank? %>
       <span class="review_buttonD">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[4].title, current_book_image_url: @book[4].image_url,current_book_author: @book[4].author } }%>
+        <% unless @favorite[4].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[1].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[4].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[4].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[5].blank? %>
       <span class="review_buttonE">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[5].title, current_book_image_url: @book[5].image_url,current_book_author: @book[5].author } }%>
+        <% unless @favorite[5].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[5].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[5].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[5].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[6].blank? %>
       <span class="review_buttonF">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[6].title, current_book_image_url: @book[6].image_url,current_book_author: @book[6].author } }%>
+        <% unless @favorite[6].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[6].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[6].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[6].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[7].blank? %>
       <span class="review_buttonG">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[7].title, current_book_image_url: @book[7].image_url,current_book_author: @book[7].author } }%>
+        <% unless @favorite[7].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[7].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[7].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[7].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[8].blank? %>
       <span class="review_buttonH">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[8].title, current_book_image_url: @book[8].image_url,current_book_author: @book[8].author } }%>
+        <% unless @favorite[8].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[8].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[8].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[8].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[9].blank? %>
       <span class="review_buttonI">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[9].title, current_book_image_url: @book[9].image_url,current_book_author: @book[9].author } }%>
+        <% unless @favorite[9].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[9].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[9].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[9].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[10].blank? %>
       <span class="review_buttonJ">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[10].title, current_book_image_url: @book[10].image_url,current_book_author: @book[10].author } }%>
+        <% unless @favorite[10].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[10].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[10].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[10].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[11].blank? %>
       <span class="review_buttonK">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[11].title, current_book_image_url: @book[11].image_url,current_book_author: @book[11].author } }%>
+        <% unless @favorite[11].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[11].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[11].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[11].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[12].blank? %>
       <span class="review_buttonL">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[12].title, current_book_image_url: @book[12].image_url,current_book_author: @book[12].author } }%>
+        <% unless @favorite[12].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[12].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[12].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[12].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[13].blank? %>
       <span class="review_buttonM">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[13].title, current_book_image_url: @book[13].image_url,current_book_author: @book[13].author } }%>
+        <% unless @favorite[13].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[13].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[13].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[13].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[14].blank? %>
       <span class="review_buttonN">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[14].title, current_book_image_url: @book[14].image_url,current_book_author: @book[14].author } }%>
+        <% unless @favorite[14].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[14].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[14].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[14].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
     <% unless @book[15].blank? %>
       <span class="review_buttonO">
         <%= button_to 'レビューを書く', {controller: 'review1s', action: 'create'}, {method: :get ,params: { current_book_title: @book[15].title, current_book_image_url: @book[15].image_url,current_book_author: @book[15].author } }%>
+        <% unless @favorite[15].nil? %>
+        <%= form_with(model: current_user.favorites.find_by(title: @book[15].title), method: :delete) do |f| %>
+          <%= hidden_field_tag :book_id, @book[15].id %>
+          <%= f.submit 'Unfavorite', class: 'btn btn-danger w-70' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.favorites.build) do |f| %>
+          <%= hidden_field_tag :book_id, @book[15].id %>
+          <%= f.submit 'Favorite', class: 'btn btn-primary w-70' %>
+      <% end %>
+      <% end %>
       </span>
     <% end %>
   </div>
+</body>
+<% else %>
 <% end %>
-
-
-      
-    

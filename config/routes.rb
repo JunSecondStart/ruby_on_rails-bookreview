@@ -16,8 +16,13 @@ Rails.application.routes.draw do
   post 'books/create', to: "books#create"
   get 'books/index', to: "books#index"
   
-  get 'review1s/personal_review1s', to:"review1s#personal_review1s"
+  get 'review1s/book_review1s', to: "review1s#book_review1s"
+  get 'review1s/personal_review1s', to: "review1s#personal_review1s"
+  get 'review1s/my_review1s', to: "review1s#my_review1s"
   
+  delete 'review1s/destroy:id', to: 'review1s#destroy'
+  
+  get 'microposts/followings', to: 'microposts#followings'
   
   resources :users, only: [:index, :show, :create]do
     member do
@@ -27,7 +32,7 @@ Rails.application.routes.draw do
       get :review1s
     end
   end
-    resources :review1s,only: [:index, :create, :destroy]
-    resources :microposts, only: [:create, :destroy]
+    resources :review1s,only: [:index, :create, :destroy, :edit, :update]
+    resources :relationships, only: [:create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
 end

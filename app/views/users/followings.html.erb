@@ -19,7 +19,7 @@
       <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link">Followings<span class="badge bg-secondary"><%= $count_followings %></span></a></li>
       <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link">Followers<span class="badge bg-secondary"><%= $count_followers %></span></a></li>
     </ul>
-    <%= render 'review1s/my_review1s', review1s: $curent_user_review1s %>
+    <%= render 'users', users: @followings %>
   </div>
 </div>
 </body>

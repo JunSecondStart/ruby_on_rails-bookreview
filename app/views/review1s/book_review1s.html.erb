@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag "all", :media => "all" %>
 <% if logged_in? %>
-  <body>
-    <%= render 'review1s/personal_review1s', review1s: $personal_user_review1s %>
-  </body>
+<body>
+<%= render 'review1s/book_review1s', review1s: $current_book_review1s %>
+</body>
 <% else %>
 <body>
   <div class="bg-secondary p-3 p-sm-5 my-4 rounded">
@@ -13,3 +13,4 @@
   </div>
 </body>
 <% end %>
+  

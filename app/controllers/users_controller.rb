@@ -7,9 +7,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @pagy, @microposts = pagy(@user.microposts.order(id: :desc))
     counts(@user)
-    end
+    $current_user_review1s=Review1.where(user_id: @user.id)
+    @pagy, $current_user_review1s = pagy($current_user_review1s.order(id: :desc), items: 15)
+  end
 
 
   def new
@@ -32,14 +33,30 @@ class UsersController < ApplicationController
   def likes
     @user = User.find(params[:id])
     @likes = Favorite.where(user_id: @user.id)
-    @pagy, @lovings = pagy(@likes)
+    @pagy, @likes = pagy(@likes.order(id: :DESC), items: 10)
     counts(@user)
+    $likes = @likes
   end
   
   def review1s
     @user = User.find(params[:id])
-    $curent_user_review1s=Review1.where(user_id: @user.id)
-    @pagy, $curent_user_review1s = pagy($curent_user_review1s.order(id: :desc), items: 15)
+    $personal_user_review1s=Review1.where(user_id: @user_id)
+    $current_user_review1s=Review1.where(user_id: @user.id)
+    @pagy, $current_user_review1s = pagy($current_user_review1s.order(id: :desc), items: 15)
+    counts(@user)
+    $user = @user
+  end
+  
+  def followings
+     @user = User.find(params[:id])
+     @pagy, @followings = pagy(@user.followings)
+    counts(@user)
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @pagy, @followers = pagy(@user.followers)
+    counts(@user)
   end
   
    private

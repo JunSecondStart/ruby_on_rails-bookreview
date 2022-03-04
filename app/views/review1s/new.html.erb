@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "all", :media => "all" %>
+<body>
 <figure>
   <%= image_tag $image_url,width: '15%', height: '50%' %>
   <figcaption><%= $title %><%= $author %></figcaption>
@@ -11,3 +13,4 @@
     <%= f.submit 'Post', class: 'btn btn-primary w-100' %>
   <% end %>
 </aside>
+</body>

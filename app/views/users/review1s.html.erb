@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "all", :media => "all" %>
+</body>
 <div class="row">
   <aside class="col-sm-4">
     <div class="card">
@@ -8,15 +10,20 @@
         <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
+    <%= render 'relationships/follow_button', user: @user %>
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">Microposts  <span class="badge bg-secondary"><%= @count_microposts %></span></a></li>
-      <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">Likes  <span class="badge bg-secondary"><%= @count_lovings %></span></a></li>
-      <li class="nav-item"><a href="<%= review1s_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(review1s_user_path(@user)) %>">Reviews<span class="badge bg-secondary"><%= @count_user_review1s %></span></a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Followings</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Followers</a></li>
+      <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">Likes  <span class="badge bg-secondary"><%= $count_lovings %></span></a></li>
+      <li class="nav-item"><a href="<%= review1s_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(review1s_user_path(@user)) %>">Reviews<span class="badge bg-secondary"><%= $count_user_review1s %></span></a></li>
+      <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link">Followings<span class="badge bg-secondary"><%= $count_followings %></span></a></li>
+      <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link">Followers<span class="badge bg-secondary"><%= $count_followers %></span></a></li>
     </ul>
-    <%= render 'review1s/personal_review1s', review1s: $curent_user_review1s %>
+    <% if current_user = @user %>
+        <%= render 'review1s/my_review1s', review1s: $curent_user_review1s %>
+      <% else %>
+        <%= render 'review1s/personal_review1s', review1s: $curent_user_review1s %>
+      <% end %>
   </div>
 </div>
+</body>

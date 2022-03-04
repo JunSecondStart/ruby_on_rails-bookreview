@@ -1,0 +1,37 @@
+<% if $current_user_review1s.any? %>
+    <h1><%= @user.name %>の投稿したレビュー一覧</h1>
+<% else %>
+  投稿はありません。
+<% end %>
+  
+<% if $current_user_review1s.any? %>
+  <p>投稿内容</p>
+  
+  <table class="table table-bordered">
+  <thead>
+        <tr>
+          <th scope="col-sm-1">number</th>
+          <th scope="col-sm-3">name</th>
+          <th scope="col-sm-3">title/author</th>
+          <th scope="col-sm-3">content</th>
+          <th scope="col-sm-1">time</th>
+          <th scope="col-sm-1">edit</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+    <% $current_user_review1s.each do |review1| %>  
+      <th scope="row"><%= review1.user_id %></th>
+        <td><%= review1.name %></td>
+        <td><%= review1.title %><br><%= review1.author %></td>
+        <td><%= review1.content %></td>
+        <td><%= review1.created_at %></td>
+        <td><%= link_to '編集', edit_review1_path(review1), class: 'btn btn-lg btn-primary' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%== pagy_bootstrap_nav(@pagy) %>
+<% else %>
+<% end %>
+  

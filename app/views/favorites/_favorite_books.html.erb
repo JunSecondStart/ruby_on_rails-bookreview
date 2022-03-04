@@ -1,14 +1,25 @@
-<% if microposts.any? %>
-  <ul class="list-unstyled mt-2">
-    <% likes.each do |like| %>
-      <li class="d-flex">
-        <div>
-          <div>
-            <p><%= like.content %></p>
-          </div>
-        </div>
-      </li>
+<h1>お気に入りの本一覧</h1>
+<% if @likes.any? %>
+<p> 上が最新の投稿になります。</p>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col-sm-1">number</th>
+        <th scope="col-sm-3">title/author</th>
+        <th scope="col-sm-3">time</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <% @likes.each do |like| %>  
+      <th scope="row"><%= like.user_id %></th>
+      <td><%= like.title %><br><%= like.author %></td>
+      <td><%= like.created_at %></td>
+    </tr>
     <% end %>
-  </ul>
-  <%== pagy_bootstrap_nav(@pagy) %>
+  </tbody>
+</table>
+<%== pagy_bootstrap_nav(@pagy) %>
+<% else %>
+<p>お気に入りの本は現在ありません。</p>
 <% end %>

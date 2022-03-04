@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "all", :media => "all" %>
+<body>
 <div class = "row">
   <aside class="col-sm-4">
     <figure>
@@ -12,7 +14,7 @@
     <% end %>
   </aside>
   <div class="col-sm-8">
-    <h1>今までの投稿</h1>
-    <%= render 'review1s/review1s', review1s: @review1s %>
+    <%= render 'review1s/book_review1s', review1s: @review1s %>
   </div>
 </div>
+</body>

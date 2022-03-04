@@ -1,22 +1,31 @@
+<%= stylesheet_link_tag "all", :media => "all" %>
+<body>
 <% if logged_in? %>
   <div class="row">
     <aside class="col-sm-4">
-      <%= form_with(model: @micropost) do |f| %>
-        <div class="mb-3">
-          <%= f.text_area :content, class: 'form-control', rows: 5 %>
-        </div>
-        <%= f.submit 'Post', class: 'btn btn-primary w-100' %>
-        <% end %>
     </aside>
     <div class="col-sm-8">
-      <%= render 'favorites/favorite_books', microposts: @lovings %>
+      <% if @likes.any? %>
+        <ul class="list-unstyled mt-2">
+          <% @likes.each do |like| %>
+        <tr>
+        <th scope="row"><%= like.user_id %></th>
+          <td><%= like.title %></td>
+          <td><%= like.author %></td>
+        </tr>
+        <% end %>
+        </ul>
+      <% end %>
     </div>
   </div>
+</body>
 <% else %>
+<body>
   <div class="bg-secondary p-3 p-sm-5 my-4 rounded">
     <div class="text-center text-white">
       <h1>Welcome to the myfavorites</h1>
       <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>
+</body>
 <% end %>
